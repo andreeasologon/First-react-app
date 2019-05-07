@@ -15,8 +15,8 @@ export default class Cocktail extends React.Component {
   render() {
     return (
       <div className="tile-container">
-        <p onClick={this.handleClick}>{this.props.idDrink}</p>
-          <img src= {this.props.imgUrl} alt={this.props.title} height="42" width="42"></img>
+        <p onClick={this.handleClick}>{this.props.title}</p>
+          <img onClick={this.handleClick} src= {this.props.imgUrl} alt={this.props.title}></img>
       </div>
     );
   }
