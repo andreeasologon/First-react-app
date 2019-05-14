@@ -8,9 +8,15 @@
   li {
     margin-right: 25px;
 
-    &:hover{
+    a {
+      color: black;
+      &:hover {
         color: #ff4081;
         cursor: pointer;
+      }
+      &:link {
+        text-decoration: none;
+      }
     }
   }
 }

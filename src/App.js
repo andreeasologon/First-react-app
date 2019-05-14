@@ -1,59 +1,33 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import './App.scss';
-import { Header, Navigation, SearchBar, Cocktails } from './components/index';
+import { Header, SearchBar, Cocktails } from './components/index';
+import TitleDetails from './components/title-details/TitleDetails';
+import AddCocktail from './components/add-cocktail/AddCocktail';
 
 class App extends Component {
-  state = {
-    nav: [{
-      id: 'Alcoholic',
-      name: 'Alcoholic'
-    },
-    {
-      id: 'Non_Alcoholic',
-      name: 'Non-alcoholic'
-    },
-    {
-      id: 'Ordinary_Drink',
-      name: 'Ordinary drink'
-    },
-    {
-      id: 'Cocktail_glass',
-      name: 'Cocktail glass'
-    },
-    {
-      id: "Champagne_flute",
-      name: 'Champagne flute'
-    }],
 
-    cocktails: '',
-    category: '',
-    details: false
-  }
-  componentDidMount() {
-
-    axios.get('https://www.thecocktaildb.com/api/json/v1/1/filter.php?a=Alcoholic')
-      .then(response => this.setState({
-        cocktails: response.data,
-        category: 'Alcoholic'
-      })
-      );
-
-    // axios.get('https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Ordinary_Drink')
-    //   .then(response => this.setState({
-    //     cocktails: response.data,
-    //     category:'Ordinary drink'
-    //   })
-    //   );
-  }
   render() {
     return (
-      <div className="App">
-        <Header />
-        <Navigation navigationItems={this.state.nav} />
-        <SearchBar />
-        <Cocktails category={this.state.category} cocktails={this.state.cocktails} />
-      </div>
+      <Router>
+        <div className="App">
+          <Header />
+          <ul className="nav-container">
+            <li><Link to="/Alcoholic">Alcoholic</Link></li>
+            <li><Link to="/Non_Alcoholic">Non Alcoholic</Link></li>
+            <li><Link to="/Ordinary_Drink">Ordinary Drink</Link></li>
+            <li><Link to="/Cocktail_glass">Cocktail glass</Link></li>
+            <li><Link to="/Champagne_flute">Champagne flute</Link></li>
+          </ul>
+          <SearchBar />
+          <Switch>
+            <Route exact path={`/details/:id`} component={TitleDetails}></Route>
+            <Route exact path={`/addCocktail/`} component={AddCocktail}></Route>
+            <Route exact path="/:id" component={Cocktails}></Route>
+          </Switch>
+        </div>
+      </Router>
+
     );
   }
 }
