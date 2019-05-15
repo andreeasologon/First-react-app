@@ -56,8 +56,11 @@ export default class Cocktails extends React.Component {
 
     return (
       <div>
-        <h4>{this.state !== null && this.state.category}</h4>
-        <Link to={`/addCocktail/`}><button className="button-search">Add cocktail</button></Link>
+        <div className="cocktails-details">
+          <h4>{this.state !== null && this.state.category}</h4>
+          <Link to={`/addCocktail/`}><button className="button-search">Add cocktail</button></Link>
+        </div>
+
         <div className="tiles-container">
           {cocktailTiles}
         </div>
